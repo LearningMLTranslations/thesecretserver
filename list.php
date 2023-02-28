@@ -22,32 +22,45 @@
 <?php include 'header.php'; ?>
 	<h1>Product List</h1>
 
-<a href="?order=name">Sort by Name</a> | <a href="?order=price">Sort by Highest Price</a> | <a href="?order=price%20DESC">Sort by Lowest Price</a>
-<form action="?order=name">
-    <input type="text" name="search">
-    <input type="submit" name="Search">
-</form>
+	<?php
+		$search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
+		$order = isset($_GET['order']) ? htmlspecialchars($_GET['order']) : '';
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Timestamp</th>
-            <th>Price</th>
-            <th>Serving Size</th>
-            <th>Calories</th>
-            <th>Ingredients</th>
-            <th>Description</th>
-            <th>Name</th>
-            <th>Image</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php include 'crud.php'; ?>
-    </tbody>
-</table>
+		$sortByName = "?order=name&search=$search";
+		$sortByHighestPrice = "?order=price&search=$search";
+		$sortByLowestPrice = "?order=price DESC&search=$search";
+	?>
 
-<br /><br /><br />
+	<a href="<?= $sortByName ?>">Sort by Name</a> |
+	<a href="<?= $sortByHighestPrice ?>">Sort by Highest Price</a> |
+	<a href="<?= $sortByLowestPrice ?>">Sort by Lowest Price</a>
+
+	<form action="?">
+		<input type="text" name="search" value="<?= $search ?>">
+		<input type="submit" value="Search">
+	</form>
+<br /> <br />
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Timestamp</th>
+				<th>Price</th>
+				<th>Serving Size</th>
+				<th>Calories</th>
+				<th>Ingredients</th>
+				<th>Description</th>
+				<th>Name</th>
+				<th>Image</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php include 'crud.php'; ?>
+		</tbody>
+	</table>
+
+	<br /><br /><br />
+
 	<p>This site is sponsored by <a href="https://www.wctc.edu">www.wctc.edu</a></p>
 </body>
 </html>
