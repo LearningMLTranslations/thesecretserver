@@ -60,7 +60,7 @@ if (isset($_POST["delete"])) {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
-$order = "id ASC"
+$order = "id ASC";
 if (isset($_REQUEST['order'])) {
     $order = $_REQUEST['order'];
 }
