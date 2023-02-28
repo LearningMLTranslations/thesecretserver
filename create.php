@@ -1,5 +1,6 @@
 <?php require_once "./admin/force_login.inc"; ?>
 <?php include "header.php"; ?>
+
 	<h1>Create Product</h1>
 
 	<form action="crud.php" method="post">
@@ -32,7 +33,7 @@
 			<input type="text" id="image" name="image" required>
 		</div>
 		<br>
-		<button type="submit" name="create">Create Product</button>
+		<button type="submit" name="create" style="font-weight:bold;">Create Product</button>
 	</form>
 <br /><br /><br />
 	<p>This site is sponsored by <a href="https://www.wctc.edu">www.wctc.edu</a></p>

@@ -61,8 +61,20 @@ if (isset($_POST["delete"])) {
     }
 }
 $order = "id ASC";
+
 if (isset($_REQUEST['order'])) {
-    $order = $_REQUEST['order'];
+    $columns = ['id', 'timestamp', 'price', 'servingSize', 'calories', 'ingredients', 'description', 'name'];
+    $directions = ['ASC', 'DESC'];
+
+    $parts = explode(' ', $_REQUEST['order']);
+    $column = $parts[0];
+    $direction = count($parts) > 1 ? $parts[1] : 'ASC';
+
+    if (in_array($column, $columns) && in_array($direction, $directions)) {
+        $order = "$column $direction";
+    } else {
+        echo "Invalid sort order";
+    }
 }
 if (isset($_GET['search'])) {
     if (!empty($_GET['search'])) {

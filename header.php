@@ -49,7 +49,7 @@
         <ul class="nav navbar-nav">
             <a href="/index.php">Home</a>
     <?php
-    echo '| <a href="/list.php">Products</a>';
+    echo '| <a href="/list.php?search=">Products</a>';
     ?>
     <?php
     if(isset($_SESSION['username']) && $_SESSION['username'] != NULL) {
