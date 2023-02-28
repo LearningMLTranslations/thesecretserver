@@ -62,7 +62,7 @@ if (isset($_POST["delete"])) {
 }
 $order = "id ASC";
 
-if (isset($_REQUEST['order'])) {
+if (isset($_GET['order'])) {
     $columns = ['id', 'timestamp', 'price', 'servingSize', 'calories', 'ingredients', 'description', 'name'];
     $directions = ['ASC', 'DESC'];
 
@@ -78,13 +78,14 @@ if (isset($_REQUEST['order'])) {
 }
 if (isset($_GET['search'])) {
     if (!empty($_GET['search'])) {
-        $search = $_GET['search'];
+        $search = htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8');
     } else {
         die("Please enter a search term");
     }
 } else {
     die("Malformed request.");
 }
+
 
 $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
 $result = mysqli_query($conn, $sql);
