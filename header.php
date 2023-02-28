@@ -45,25 +45,21 @@
 </head>
 <header class="">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <div align="left">
-                <div class="navbar-type">Juice Shop</div>
-            </div>
-        </div>
+        <div class="navbar-header"></div>
         <ul class="nav navbar-nav">
-            <li><a href="/index.php">Home</a></li>
-            <li><a href="/products.php">Products</a></li>
+            <a href="/index.php">Home</a>
+            <a href="/products.php">Products</a>
     <?php
-    echo '<li><a href="/list.php">View our Products!</a></li>';
+    echo '<a href="/list.php">View our Products!</a>';
     ?>
     <?php
     if(isset($_SESSION['username']) && $_SESSION['username'] != NULL) {
-    echo '<li><a href="/admin/logout.php">Logout</a></li> ';
-    echo '<li><a href="/create.php">Create</a></li>';
-    echo '<li><a href="/update.php">Update</a></li>';
-    echo '<li><a href="/delete.php">Delete</a></li>';
+    echo '<a href="/admin/logout.php">Logout</a> ';
+    echo '<a href="/create.php">Create</a>';
+    echo '<a href="/update.php">Update</a>';
+    echo '<a href="/delete.php">Delete</a>';
     } else {
-    echo '<li><a href="/admin/login.php">Login</a></li>';
+    echo '<a href="/admin/login.php">Login</a>';
         }
     ?>
     </ul>

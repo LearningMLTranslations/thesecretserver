@@ -40,7 +40,7 @@ if(isset($_SESSION['username'])) {
 ?>
 <html>
 <body>
-<?php include 'header.php'; ?>
+<?php include '../header.php'; ?>
 <form method="post" action="/admin/login.php">
 	<input type="hidden" name="redirect" value="<?php echo isset($_REQUEST['redirect']); ?>" />
 

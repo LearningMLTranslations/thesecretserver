@@ -64,7 +64,7 @@ if (isset($_REQUEST['order'])) {
 $order = $_REQUEST['order'];
 }
 if (isset($_GET['search'])) {
-    if (!empty($_GET['search'])); {
+    if (!empty($_GET['search'])) {
         $search = $_GET['search'];
     } else {
         die("Please enter a search term");
