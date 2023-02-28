@@ -60,8 +60,9 @@ if (isset($_POST["delete"])) {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
+$order = "id ASC"
 if (isset($_REQUEST['order'])) {
-$order = $_REQUEST['order'];
+    $order = $_REQUEST['order'];
 }
 if (isset($_GET['search'])) {
     if (!empty($_GET['search'])) {
@@ -73,8 +74,8 @@ if (isset($_GET['search'])) {
     die("Malformed request.");
 }
 
-//$sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
-$sql = "SELECT * FROM juices WHERE name LIKE * ORDER BY $order";
+$sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
+
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) != 0) {

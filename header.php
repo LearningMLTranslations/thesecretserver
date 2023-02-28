@@ -48,18 +48,17 @@
         <div class="navbar-header"></div>
         <ul class="nav navbar-nav">
             <a href="/index.php">Home</a>
-            <a href="/products.php">Products</a>
     <?php
-    echo '<a href="/list.php">View our Products!</a>';
+    echo '| <a href="/list.php">Products</a>';
     ?>
     <?php
     if(isset($_SESSION['username']) && $_SESSION['username'] != NULL) {
-    echo '<a href="/admin/logout.php">Logout</a> ';
-    echo '<a href="/create.php">Create</a>';
-    echo '<a href="/update.php">Update</a>';
-    echo '<a href="/delete.php">Delete</a>';
+    echo ' | <a href="/admin/logout.php">Logout</a>';
+    echo ' | <a href="/create.php">Create</a>';
+    echo ' | <a href="/update.php">Update</a>';
+    echo ' | <a href="/delete.php">Delete</a>';
     } else {
-    echo '<a href="/admin/login.php">Login</a>';
+    echo ' | <a href="/admin/login.php">Login</a> ';
         }
     ?>
     </ul>

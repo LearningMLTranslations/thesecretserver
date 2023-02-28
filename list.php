@@ -19,14 +19,14 @@
 </head>
 <body style="background-color:#f9fafc;">
 
+<?php include 'header.php'; ?>
+	<h1>Product List</h1>
+
 <a href="?order=name">Sort by Name</a> | <a href="?order=price">Sort by Highest Price</a> | <a href="?order=price DESC">Sort by Lowest Price</a>
 <form action="?order=name">
     <input type="text" name="search">
     <input type="submit" name="Search">
-    </form>
-
-<?php include 'header.php'; ?>
-	<h1>Product List</h1>
+</form>
 
 	<table>
 		<tbody>

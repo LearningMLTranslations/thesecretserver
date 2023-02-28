@@ -1,4 +1,4 @@
-<?php require_once "/admin/force_login.inc"; ?>
+<?php require_once "./admin/force_login.inc"; ?>
 <head>
 	<style>
 		form {
