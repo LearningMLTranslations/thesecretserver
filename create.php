@@ -3,26 +3,34 @@
 	<h1>Create Product</h1>
 
 	<form action="crud.php" method="post">
-		<label for="price">Price:</label>
-		<input type="number" id="price" name="price" step="0.01" required><br>
-<br>
-		<label for="servingSize">Serving Size:</label>
-		<input type="text" id="servingSize" name="servingSize" required><br>
-<br>
-		<label for="calories">Calories:</label>
-		<input type="number" id="calories" name="calories" required><br>
-<br><br>
-		<label for="ingredients">Ingredients:</label>
-		<input type="text" id="ingredients" name="ingredients" required><br>
-<br>
-		<label for="description">Description:</label>
-		<textarea id="description" name="description" rows="4" cols="50"></textarea><br>
-
-		<label for="name">Name:</label>
-		<input type="text" id="name" name="name" required><br>
-
-		<label for="image">Image:</label>
-		<input type="text" id="image" name="image" required><br>
+		<div style="display:flex;">
+			<label for="price" style="width:100px;">Price:</label>
+			<input type="number" id="price" name="price" step="0.01" required>
+		</div>
+		<div style="display:flex;">
+			<label for="servingSize" style="width:100px;">Serving Size:</label>
+			<input type="text" id="servingSize" name="servingSize" required>
+		</div>
+		<div style="display:flex;">
+			<label for="calories" style="width:100px;">Calories:</label>
+			<input type="number" id="calories" name="calories" required>
+		</div>
+		<div style="display:flex;">
+			<label for="ingredients" style="width:100px;">Ingredients:</label>
+			<input type="text" id="ingredients" name="ingredients" required>
+		</div>
+		<div style="display:flex;">
+			<label for="description" style="width:100px;">Description:</label>
+			<textarea id="description" name="description" rows="4" cols="50"></textarea>
+		</div>
+		<div style="display:flex;">
+			<label for="name" style="width:100px;">Name:</label>
+			<input type="text" id="name" name="name" required>
+		</div>
+		<div style="display:flex;">
+			<label for="image" style="width:100px;">Image:</label>
+			<input type="text" id="image" name="image" required>
+		</div>
 		<br>
 		<button type="submit" name="create">Create Product</button>
 	</form>

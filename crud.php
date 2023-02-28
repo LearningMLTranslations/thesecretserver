@@ -75,18 +75,16 @@ if (isset($_GET['search'])) {
 }
 
 $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
-
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) != 0) {
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Timestamp</th><th>Price</th><th>Serving Size</th><th>Calories</th><th>Ingredients</th><th>Description</th><th>Name</th><th>Image</th></tr>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["id"]. "</td><td>" . $row["timestamp"]. "</td><td>$" . $row["price"]. "</td><td>" . $row["servingSize"]. "</td><td>" . $row["calories"]. "</td><td>" . $row["ingredients"]. "</td><td>" . $row["description"]. "</td><td>" . $row["name"]. "</td><td><img src='images/" . $row["image"] . "' width='100' height='100'></td></tr>";
     }
-    echo "</table>";
 } else {
-    echo "No products found in the database.";
+    echo "<tr><td colspan='9'>No products found in the database.</td></tr>";
 }
 
+
 mysqli_close($conn);
+?>
