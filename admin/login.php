@@ -4,8 +4,8 @@ session_start();
 require_once "db.php";
 
 if ($_SERVER['REQUEST_METHOD'] =='POST') {
-    $myusername = $_REQUEST['username'];
-    $mypassword = $_REQUEST['password'];
+    $myusername = htmlspecialchars($_REQUEST['username'], ENT_QUOTES);
+    $mypassword = htmlspecialchars($_REQUEST['password'], ENT_QUOTES);
 
     $sql = "SELECT * FROM users WHERE username='$myusername' AND password=SHA2('$mypassword', 256)";
 
