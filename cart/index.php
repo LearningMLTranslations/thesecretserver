@@ -6,10 +6,11 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.php";
 
 // Form variables
-$myproduct_id = $_REQUEST['product_id'];
-$myprice = $_REQUEST['price'];
-$myquantity = $_REQUEST['quantity'] ?: 1;
-$myremove_product_id = $_REQUEST['remove_product_id'];
+$myproduct_id = isset($_REQUEST['product_id']) ? $_REQUEST['product_id'] : null;
+$myprice = isset($_REQUEST['price']) ? $_REQUEST['price'] : null;
+$myquantity = isset($_REQUEST['quantity']) ? $_REQUEST['quantity'] : 1;
+$myremove_product_id = isset($_REQUEST['remove_product_id']) ? $_REQUEST['remove_product_id'] : null;
+
 
 // If the user requested an item to be removed, remove it
 if(!empty($myremove_product_id)) {

@@ -55,7 +55,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php include 'crud.php'; ?>
+			<?php
+			$search = empty($search) ? "" : $search;
+			include 'crud.php';
+			?>
 		</tbody>
 	</table>
 
