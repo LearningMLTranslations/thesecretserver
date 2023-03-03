@@ -3,7 +3,7 @@
 session_start();
 
 // Required our database connection
-require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.php";
 
 // Form variables
 $myproduct_id = $_REQUEST['product_id'];
@@ -22,7 +22,7 @@ if(!empty($myproduct_id)) {
 }
 
 // Select all of the product details from the database
-$sql = "SELECT * FROM products";
+$sql = "SELECT * FROM juices";
 $results = mysqli_query($mysqli, $sql);
 while($row = mysqli_fetch_array($results)) {
 	// This will produce an array where the product id shows the name; for example:
@@ -36,7 +36,7 @@ while($row = mysqli_fetch_array($results)) {
 <html lang=en>
 
 <head>
-	<title>Disco Juice - Shopping Cart</title>
+	<title>Juice Shop - Shopping Cart</title>
 	<style>
 		table {
 			border-collapse: collapse;

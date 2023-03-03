@@ -3,7 +3,7 @@
 session_start();
 
 // Required our database connection
-require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.php";
 
 // Check that there are contents in the cart, otherwise redirect back to show the empty cart message
 if(empty($_SESSION['cart'])) {
@@ -27,7 +27,7 @@ $mysecuritycode = $_REQUEST['securitycode'];
 <html lang=en>
 
 <head>
-	<title>Disco Juice - Checkout</title>
+	<title>Juice Shop - Checkout</title>
 	<style>
 		.error {
 			border: 1px solid red;

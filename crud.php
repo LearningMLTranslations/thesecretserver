@@ -92,11 +92,23 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) != 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["timestamp"]. "</td><td>$" . $row["price"]. "</td><td>" . $row["servingSize"]. "</td><td>" . $row["calories"]. "</td><td>" . $row["ingredients"]. "</td><td>" . $row["description"]. "</td><td>" . $row["name"]. "</td><td><img src='images/" . $row["image"] . "' width='100' height='100'></td></tr>";
+        echo "<tr>";
+        echo "<td>" . $row["id"]. "</td>";
+        echo "<td>" . $row["timestamp"]. "</td>";
+        echo "<td>$" . $row["price"]. "</td>";
+        echo "<td>" . $row["servingSize"]. "</td>";
+        echo "<td>" . $row["calories"]. "</td>";
+        echo "<td>" . $row["ingredients"]. "</td>";
+        echo "<td>" . $row["description"]. "</td>";
+        echo "<td>" . $row["name"]. "</td>";
+        echo "<td><img src='images/" . $row["image"] . "' width='100' height='100'></td>";
+        echo "<td><form method='POST' action='checkout.php'><input type='hidden' name='id' value='" . $row["id"] . "'><input type='submit' value='Buy'></form></td>";
+        echo "</tr>";
     }
 } else {
-    echo "<tr><td colspan='9'>No products found in the database.</td></tr>";
+    echo "<tr><td colspan='10'>No products found in the database.</td></tr>";
 }
+
 
 
 mysqli_close($conn);
