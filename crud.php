@@ -4,68 +4,106 @@ $username = "root";
 $password = "L0g1n_P4s\$w0rd";
 $dbname = "juiceshop";
 
-$conn = new mysqli($host, $username, $password, $dbname);
+   $dbhost = 'mysql:host=' . $host . ';dbname=' . $dbname;
+   $pdo = new PDO($dbhost, $username, $password);
+
 session_start();
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+
+if (!$pdo->errorCode()) {
+    die("Connection failed: " . $pdo->errorInfo());
 }
 
 if (isset($_POST["create"])) {
-    $price = mysqli_real_escape_string($conn, $_POST["price"]);
-    $servingSize = mysqli_real_escape_string($conn, $_POST["servingSize"]);
-    $calories = mysqli_real_escape_string($conn, $_POST["calories"]);
-    $ingredients = mysqli_real_escape_string($conn, $_POST["ingredients"]);
-    $description = mysqli_real_escape_string($conn, $_POST["description"]);
-    $name = mysqli_real_escape_string($conn, $_POST["name"]);
-    $image = mysqli_real_escape_string($conn, $_POST["image"]);
+    // Validate user input
+    $price = filter_var($_POST["price"], FILTER_VALIDATE_FLOAT);
+    $servingSize = filter_var($_POST["servingSize"], FILTER_VALIDATE_INT);
+    $calories = filter_var($_POST["calories"], FILTER_VALIDATE_INT);
+    $ingredients = filter_var($_POST["ingredients"], FILTER_SANITIZE_STRING);
+    $description = filter_var($_POST["description"], FILTER_SANITIZE_STRING);
+    $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+    $image = filter_var($_POST["image"], FILTER_SANITIZE_STRING);
 
-    $sql = "INSERT INTO juices (timestamp, price, servingSize, calories, ingredients, description, name, image)
-            VALUES (NOW(), '$price', '$servingSize', '$calories', '$ingredients', '$description', '$name', '$image')";
+    if ($price === false || $servingSize === false || $calories === false
+        || $ingredients === false || $description === false || $name === false || $image === false) {
+        die("Invalid input. Please check your input and try again.");
+    }
 
-    if (mysqli_query($conn, $sql)) {
+    // Insert the product into the database
+    $stmt = $pdo->prepare("INSERT INTO juices (timestamp, price, servingSize, calories, ingredients, description, name, image)
+            VALUES (NOW(), :price, :servingSize, :calories, :ingredients, :description, :name, :image)");
+    $stmt->bindParam(':price', $price);
+    $stmt->bindParam(':servingSize', $servingSize);
+    $stmt->bindParam(':calories', $calories);
+    $stmt->bindParam(':ingredients', $ingredients);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':image', $image);
+    if ($stmt->execute()) {
         echo "New product created successfully!";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $stmt->errorInfo();
     }
 }
 
 if (isset($_POST["update"])) {
-    $id = mysqli_real_escape_string($conn, $_POST["id"]);
-    $price = mysqli_real_escape_string($conn, $_POST["price"]);
-    $servingSize = mysqli_real_escape_string($conn, $_POST["servingSize"]);
-    $calories = mysqli_real_escape_string($conn, $_POST["calories"]);
-    $ingredients = mysqli_real_escape_string($conn, $_POST["ingredients"]);
-    $description = mysqli_real_escape_string($conn, $_POST["description"]);
-    $name = mysqli_real_escape_string($conn, $_POST["name"]);
-    $image = mysqli_real_escape_string($conn, $_POST["image"]);
+    // Validate user input
+    $id = filter_var($_POST["id"], FILTER_VALIDATE_INT);
+    $price = filter_var($_POST["price"], FILTER_VALIDATE_FLOAT);
+    $servingSize = filter_var($_POST["servingSize"], FILTER_VALIDATE_INT);
+    $calories = filter_var($_POST["calories"], FILTER_VALIDATE_INT);
+    $ingredients = filter_var($_POST["ingredients"], FILTER_SANITIZE_STRING);
+    $description = filter_var($_POST["description"], FILTER_SANITIZE_STRING);
+    $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+    $image = filter_var($_POST["image"], FILTER_SANITIZE_STRING);
 
-    $sql = "UPDATE juices SET price='$price', servingSize='$servingSize', calories='$calories', ingredients='$ingredients', description='$description', name='$name', image='$image'
-            WHERE id='$id'";
+    if ($id === false || $price === false || $servingSize === false || $calories === false
+        || $ingredients === false || $description === false || $name === false || $image === false) {
+        die("Invalid input. Please check your input and try again.");
+    }
 
-    if (mysqli_query($conn, $sql)) {
+    // Update the product in the database
+if ($stmt = $pdo->prepare("UPDATE juices SET price=:price, servingSize=:servingSize, calories=:calories, ingredients=:ingredients, description=:description, name=:name, image=:image WHERE id=:id")) {
+    $stmt->bindParam(':price', $price);
+    $stmt->bindParam(':servingSize', $servingSize);
+    $stmt->bindParam(':calories', $calories);
+    $stmt->bindParam(':ingredients', $ingredients);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':image', $image);
+    $stmt->bindParam(':id', $id);
+    if ($stmt->execute()) {
         echo "Product updated successfully!";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error updating product";
     }
+} else {
+    echo "Statement error";
 }
 
 if (isset($_POST["delete"])) {
-    $id = mysqli_real_escape_string($conn, $_POST["id"]);
+    $id = filter_var($_POST["id"], FILTER_VALIDATE_INT);
+    if ($id === false) {
+        die("Invalid input. Please check your input and try again.");
+    }
 
-    $sql = "DELETE FROM juices WHERE id='$id'";
+    // Delete the product from the database
+    $sql = "DELETE FROM juices WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
 
-    if (mysqli_query($conn, $sql)) {
+    if ($stmt->rowCount() > 0) {
         echo "Product deleted successfully!";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: Product not deleted.";
     }
 }
+
 $order = "id ASC";
 
 if (isset($_GET['order'])) {
     $columns = ['id', 'timestamp', 'price', 'servingSize', 'calories', 'ingredients', 'description', 'name'];
     $directions = ['ASC', 'DESC'];
-
     $parts = explode(' ', $_REQUEST['order']);
     $column = $parts[0];
     $direction = count($parts) > 1 ? $parts[1] : 'ASC';
@@ -91,7 +129,7 @@ $sql = empty($search) ? "SELECT * FROM juices ORDER BY $order" : "SELECT * FROM 
 $result = $pdo->query($sql);
 
 if ($result->rowCount() != 0) {
-    while ($row = $result->fetch()) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr>";
         echo "<td>" . $row["id"]. "</td>";
         echo "<td>" . $row["timestamp"]. "</td>";
@@ -112,5 +150,6 @@ if ($result->rowCount() != 0) {
     echo "<tr><td colspan='10'>No products found in the database.</td></tr>";
 }
 
-mysqli_close($conn);
+$pdo = null;
+
 ?>
