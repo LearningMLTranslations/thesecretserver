@@ -31,8 +31,9 @@ if(!empty($myproduct_id)) {
 
 // Select all of the product details from the database
 $sql = "SELECT * FROM juices";
-$results = mysqli_query($mysqli, $sql);
-while($row = mysqli_fetch_array($results)) {
+$results = $pdo->query($sql);
+$product_name = array();
+while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 	// This will produce an array where the product id shows the name; for example:
 	// $product_name[1] = 'Apple Juice'
 	// $product_name[2] = 'Orange Juice'
