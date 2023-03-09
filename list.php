@@ -17,7 +17,8 @@
 	<a href="<?= $sortByLowestPrice ?>">Sort by Lowest Price</a>
 
 	<form action="?">
-        <input type="submit" value="Search" style="padding: 10px 20px; font-size: 16px; background-color: #D3D3D3; color: black; border: none; border-radius: 4px;">
+		<input type="text" name="search" value="<?= $search ?>">
+		<input type="submit" value="Search">
 	</form>
 
 <br /> <br />
