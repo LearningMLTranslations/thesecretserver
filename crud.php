@@ -5,7 +5,7 @@ $password = "L0g1n_P4s\$w0rd";
 $dbname = "juiceshop";
 
 $conn = new mysqli($host, $username, $password, $dbname);
-
+session_start();
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -118,7 +118,7 @@ if (mysqli_num_rows($result) != 0) {
         echo "<td><form method='POST' action='./cart/checkout.php'>
                 <input type='hidden' name='id' value='" . $row["id"] . "'>
                 <input type='hidden' name='price' value='" . $row["price"] . "'>
-                <input type='submit' value='search' style='padding: 10px 20px; font-size: 16px; background-color: #D3D3D3; color: black; border: none; border-radius: 4px;'></form></td>";
+                <input type='submit' value='Buy' style='padding: 5px 15px; font-size: 14px; background-color: #4CAF50; color: white; border: none; border-radius: 4px;''></form></td>";
         echo "</tr>";
     }
 } else {

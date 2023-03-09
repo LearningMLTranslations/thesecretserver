@@ -1,5 +1,5 @@
 <?php require_once "./admin/force_login.inc"; ?>
-
+<?php session_start(); ?>
 <body style="background-color:#f9fafc;">
 <?php include 'header.php'; ?>
 	<h1>Delete Product</h1>

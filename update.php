@@ -1,6 +1,6 @@
 <?php require_once "./admin/force_login.inc"; ?>
 <?php include "header.php"; ?>
-
+<?php session_start(); ?>
 <body style="background-color:#f9fafc;">
 	<h1>Update Product</h1>
 

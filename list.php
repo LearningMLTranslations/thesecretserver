@@ -1,5 +1,5 @@
 <?php require_once "./admin/force_login.inc"; ?>
-
+<?php session_start(); ?>
 <head>
 	<style>
 		table {
@@ -40,7 +40,7 @@
 
 	<form action="?">
 		<input type="text" name="search" value="<?= $search ?>">
-		<input type="submit" value="Search" style="padding: 10px 20px; font-size: 16px; background-color: #D3D3D3; color: black; border: none; border-radius: 4px;">
+		<input type="submit" value="Search" style="padding: 8px 18px; font-size: 16px; background-color: #D3D3D3; color: black; border: none; border-radius: 4px;">
 	</form>
 
 <br /> <br />
