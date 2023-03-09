@@ -1,4 +1,26 @@
 <?php require_once "./admin/force_login.inc"; ?>
+
+<head>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+<body style="background-color:#f9fafc;">
+
 <?php include "header.php"; ?>
 
 	<h1>Product List</h1>
@@ -18,7 +40,7 @@
 
 	<form action="?">
 		<input type="text" name="search" value="<?= $search ?>">
-		<input type="submit" value="Search">
+		<input type="submit" value="Search" style="padding: 10px 20px; font-size: 16px; background-color: #D3D3D3; color: black; border: none; border-radius: 4px;">
 	</form>
 
 <br /> <br />

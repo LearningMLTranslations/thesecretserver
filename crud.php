@@ -118,7 +118,7 @@ if (mysqli_num_rows($result) != 0) {
         echo "<td><form method='POST' action='./cart/checkout.php'>
                 <input type='hidden' name='id' value='" . $row["id"] . "'>
                 <input type='hidden' name='price' value='" . $row["price"] . "'>
-                <input type='submit' value='Buy'></form></td>";
+                <input type='submit' value='search' style='padding: 10px 20px; font-size: 16px; background-color: #D3D3D3; color: black; border: none; border-radius: 4px;'></form></td>";
         echo "</tr>";
     }
 } else {
