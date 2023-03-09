@@ -17,10 +17,17 @@ if(!empty($myremove_product_id)) {
 	unset($_SESSION['cart'][$myremove_product_id]);
 }
 
-// If the user sent a product_id, add the quantity to the existing cart quantity
+// If the user sent a product_id, add the quantity to the existing cart quantity or create a new item in the cart
 if(!empty($myproduct_id)) {
-	$_SESSION['cart'][$myproduct_id][$myprice] += $myquantity;
+	if (isset($_SESSION['cart'][$myproduct_id][$myprice])) {
+		// Add quantity to existing item in cart
+		$_SESSION['cart'][$myproduct_id][$myprice] += $myquantity;
+	} else {
+		// Create a new item in cart
+		$_SESSION['cart'][$myproduct_id][$myprice] = $myquantity;
+	}
 }
+
 
 // Select all of the product details from the database
 $sql = "SELECT * FROM juices";
