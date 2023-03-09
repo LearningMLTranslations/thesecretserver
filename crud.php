@@ -115,7 +115,10 @@ if (mysqli_num_rows($result) != 0) {
         echo "<td>" . $row["description"]. "</td>";
         echo "<td>" . $row["name"]. "</td>";
         echo "<td><img src='images/" . $row["image"] . "' width='100' height='100'></td>";
-        echo "<td><form method='POST' action='./cart/checkout.php'><input type='hidden' name='id' value='" . $row["id"] . "'><input type='submit' value='Buy'></form></td>";
+        echo "<td><form method='POST' action='./cart/checkout.php'>
+                <input type='hidden' name='id' value='" . $row["id"] . "'>
+                <input type='hidden' name='price' value='" . $row["price"] . "'>
+                <input type='submit' value='Buy'></form></td>";
         echo "</tr>";
     }
 } else {
