@@ -86,8 +86,9 @@ if (isset($_GET['search'])) {
     die("Malformed request.");
 }
 
-$sql = empty($search) ? "SELECT * FROM juices ORDER BY $order" : "SELECT * FROM juices WHERE name LIKE ? ORDER BY $order";
+$sql = empty($search) ? "SELECT * FROM juices ORDER BY $order" : "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
 
+/*
 // Add wildcards to our search term
 $search = "%{$search}%";
 
@@ -98,8 +99,9 @@ mysqli_stmt_bind_param($stmt, "s", $myterm);
 // Run the query
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
+*/
 
-//$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) != 0) {
     while ($row = mysqli_fetch_assoc($result)) {
