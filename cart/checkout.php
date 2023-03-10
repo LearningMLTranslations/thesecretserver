@@ -25,6 +25,17 @@ $stmt->bindParam(':securitycode', $mysecuritycode);
 $stmt->execute();
 $order_id = $pdo->lastInsertId();
 
+// Form variables
+$myname = isset($_POST['name']) ? $_POST['name'] : null;
+$mystreet = isset($_POST['street']) ? $_POST['street'] : null;
+$mycity = isset($_POST['city']) ? $_POST['city'] : null;
+$mystate = isset($_POST['state']) ? $_POST['state'] : null;
+$myzip = isset($_POST['zip']) ? $_POST['zip'] : null;
+$mycreditcard = isset($_POST['creditcard']) ? $_POST['creditcard'] : null;
+$myexpiration = isset($_POST['expiration']) ? $_POST['expiration'] : null;
+$mysecuritycode = isset($_POST['securitycode']) ? $_POST['securitycode'] : null;
+
+
 ?>
 <!DOCTYPE HTML>
 <html lang=en>
@@ -199,8 +210,6 @@ foreach($states as $key => $value)
 <?php
 }
 ?>
-
-$pdo = null;
 
 </body>
 </html>

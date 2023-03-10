@@ -135,14 +135,13 @@ if (isset($_GET['order'])) {
 if (isset($_GET['search'])) {
     if (!empty($_GET['search'])) {
         $search = htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8');
+        $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
     } else {
         die("Please enter a search term");
     }
 } else {
-    die("Malformed request.");
+    $sql = empty($search) ? "SELECT * FROM juices ORDER BY $order"
 }
-
-$sql = empty($search) ? "SELECT * FROM juices ORDER BY $order" : "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
 
 $result = $pdo->query($sql);
 

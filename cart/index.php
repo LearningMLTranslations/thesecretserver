@@ -88,6 +88,7 @@ if(empty($_SESSION['cart'])) {
 <?php
 
 // Loop through the items in the shopping cart
+$shopping_cart_total = 0;
 foreach($_SESSION['cart'] as $item_product_id => $item) {
 	foreach($item as $item_price => $item_quantity) {
 		// Find the item name based on our previous database query
