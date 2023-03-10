@@ -21,9 +21,28 @@ if (isset($_POST["create"])) {
     $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
     $image = filter_var($_POST["image"], FILTER_SANITIZE_STRING);
 
-    if ($price === false || $servingSize === false || $calories === false
-        || $ingredients === false || $description === false || $name === false || $image === false) {
-        die("Invalid input. Please check your input and try again.");
+    $errors = [];
+    if ($price === false) {
+        $errors[] = "Invalid price. Please enter a valid number.";
+    }
+    if ($servingSize === false) {
+        $errors[] = "Invalid serving size. Please enter a valid number.";
+    }
+    if ($calories === false) {
+        $errors[] = "Invalid calories. Please enter a valid number.";
+    }
+    if (empty($ingredients)) {
+        $errors[] = "Ingredients cannot be empty. Please enter a list of ingredients.";
+    }
+    if (empty($name)) {
+        $errors[] = "Name cannot be empty. Please enter a name for the product.";
+    }
+    if (empty($image)) {
+        $errors[] = "Image URL cannot be empty. Please enter a URL for the product image.";
+    }
+
+    if (!empty($errors)) {
+        die("Invalid input:<br>" . implode("<br>", $errors));
     }
 
     // Insert the product into the database

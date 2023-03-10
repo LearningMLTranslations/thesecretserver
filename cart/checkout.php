@@ -10,17 +10,20 @@ if(empty($_SESSION['cart'])) {
 	header("Location: /cart/");
 	exit();
 }
+$sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES (:name, :street, :city, :state, :zip, :creditcard, :expiration, :securitycode)";
+$stmt = $pdo->prepare($sql);
 
+$stmt->bindParam(':name', $myname);
+$stmt->bindParam(':street', $mystreet);
+$stmt->bindParam(':city', $mycity);
+$stmt->bindParam(':state', $mystate);
+$stmt->bindParam(':zip', $myzip);
+$stmt->bindParam(':creditcard', $mycreditcard);
+$stmt->bindParam(':expiration', $myexpiration);
+$stmt->bindParam(':securitycode', $mysecuritycode);
 
-// Form variables
-$myname = $_REQUEST['name'];
-$mystreet = $_REQUEST['street'];
-$mycity = $_REQUEST['city'];
-$mystate = $_REQUEST['state'];
-$myzip = $_REQUEST['zip'];
-$mycreditcard = $_REQUEST['creditcard'];
-$myexpiration = $_REQUEST['expiration'];
-$mysecuritycode = $_REQUEST['securitycode'];
+$stmt->execute();
+$order_id = $pdo->lastInsertId();
 
 ?>
 <!DOCTYPE HTML>
@@ -49,21 +52,23 @@ $mysecuritycode = $_REQUEST['securitycode'];
 //BEGIN: If-else field check
 // If ALL of the fields have been submitted, enter the order
 if (!empty($myname) && !empty($mystreet) && !empty($mycity) && !empty($myzip) && !empty($mycreditcard) && !empty($myexpiration) && !empty($mysecuritycode)) {
-	// Insert the order into the database
-	$sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES ('$myname', '$mystreet', '$mycity', '$mystate', '$myzip', '$mycreditcard', '$myexpiration', '$mysecuritycode')";
-	mysqli_query($mysqli, $sql);
-	$order_id = mysqli_insert_id($mysqli);
+$sql = "INSERT INTO line_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)";
+$stmt = $pdo->prepare($sql);
 
-	// Loop through the items in the shopping cart
-	foreach($_SESSION['cart'] as $item_product_id => $item) {
-		foreach($item as $item_price => $item_quantity) {
-			$shopping_cart_total += $item_quantity * $item_price;
+// Loop through the items in the shopping cart
+$shopping_cart_total = 0;
+foreach($_SESSION['cart'] as $item_product_id => $item) {
+	foreach($item as $item_price => $item_quantity) {
+		$shopping_cart_total += $item_quantity * $item_price;
 
-			// Foreach product ordered, add the product id, quantity, and price
-			$sql = "INSERT INTO line_items (order_id, product_id, quantity, price) VALUES ($order_id, $item_product_id, $item_quantity, $item_price)";
-			mysqli_query($mysqli, $sql);
-		}
+		// Bind parameters and execute the query
+		$stmt->bindParam(':order_id', $order_id);
+		$stmt->bindParam(':product_id', $item_product_id);
+		$stmt->bindParam(':quantity', $item_quantity);
+		$stmt->bindParam(':price', $item_price);
+		$stmt->execute();
 	}
+}
 
 	// Now that everything is entered into the database, empty the cart
 	unset($_SESSION['cart']);
@@ -85,7 +90,7 @@ if (!empty($myname) && !empty($mystreet) && !empty($mycity) && !empty($myzip) &&
 ?>
 
 <p>Please enter your billing details.</p>
-<form>
+<form action="checkout_process.php" method="post">
 	<table>
 		<tr>
 			<th><label for="name">Name</label></th>
@@ -192,9 +197,11 @@ foreach($states as $key => $value)
 </form>
 
 <?php
-// END: If-else field check
 }
 ?>
 
+$pdo = null;
+
 </body>
 </html>
+
