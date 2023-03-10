@@ -1,17 +1,15 @@
 <?php
-$host = "localhost";
-$username = "root";
-$password = "L0g1n_P4s\$w0rd";
-$dbname = "juiceshop";
+$username = 'root';
+$password = 'L0g1n_P4s$w0rd';
 
-   $dbhost = 'mysql:host=' . $host . ';dbname=' . $dbname;
-   $pdo = new PDO($dbhost, $username, $password);
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=juiceshop', $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+}
 
 session_start();
-
-if (!$pdo->errorCode()) {
-    die("Connection failed: " . $pdo->errorInfo());
-}
 
 if (isset($_POST["create"])) {
     // Validate user input
@@ -79,6 +77,7 @@ if ($stmt = $pdo->prepare("UPDATE juices SET price=:price, servingSize=:servingS
 } else {
     echo "Statement error";
 }
+}
 
 if (isset($_POST["delete"])) {
     $id = filter_var($_POST["id"], FILTER_VALIDATE_INT);
@@ -140,8 +139,8 @@ if ($result->rowCount() != 0) {
         echo "<td>" . $row["description"]. "</td>";
         echo "<td>" . $row["name"]. "</td>";
         echo "<td><img src='images/" . $row["image"] . "' width='100' height='100'></td>";
-        echo "<td><form method='POST' action='./cart/checkout.php'>
-                <input type='hidden' name='id' value='" . $row["id"] . "'>
+        echo "<td><form method='POST' action='./cart/'>
+                <input type='hidden' name='product_id' value='" . $row["id"] . "'>
                 <input type='hidden' name='price' value='" . $row["price"] . "'>
                 <input type='submit' value='Buy' style='padding: 5px 15px; font-size: 14px; background-color: #4CAF50; color: white; border: none; border-radius: 4px;''></form></td>";
         echo "</tr>";

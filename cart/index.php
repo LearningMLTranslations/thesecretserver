@@ -11,7 +11,6 @@ $myprice = isset($_REQUEST['price']) ? $_REQUEST['price'] : null;
 $myquantity = isset($_REQUEST['quantity']) ? $_REQUEST['quantity'] : 1;
 $myremove_product_id = isset($_REQUEST['remove_product_id']) ? $_REQUEST['remove_product_id'] : null;
 
-
 // If the user requested an item to be removed, remove it
 if(!empty($myremove_product_id)) {
 	unset($_SESSION['cart'][$myremove_product_id]);
@@ -27,7 +26,6 @@ if(!empty($myproduct_id)) {
 		$_SESSION['cart'][$myproduct_id][$myprice] = $myquantity;
 	}
 }
-
 
 // Select all of the product details from the database
 $sql = "SELECT * FROM juices";
