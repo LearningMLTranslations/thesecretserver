@@ -138,9 +138,9 @@ if (isset($_GET['search'])) {
         $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
     } else {
         die("Please enter a search term");
-    }
+        }
 } else {
-    $sql = empty($search) ? "SELECT * FROM juices ORDER BY $order"
+    $sql = empty($search) ? "SELECT * FROM juices ORDER BY $order";
 }
 
 $result = $pdo->query($sql);

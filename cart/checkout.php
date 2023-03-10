@@ -10,6 +10,17 @@ if(empty($_SESSION['cart'])) {
 	header("Location: /cart/");
 	exit();
 }
+
+// Form variables
+$myname = isset($_POST['name']) ? $_POST['name'] : null;
+$mystreet = isset($_POST['street']) ? $_POST['street'] : null;
+$mycity = isset($_POST['city']) ? $_POST['city'] : null;
+$mystate = isset($_POST['state']) ? $_POST['state'] : null;
+$myzip = isset($_POST['zip']) ? $_POST['zip'] : null;
+$mycreditcard = isset($_POST['creditcard']) ? $_POST['creditcard'] : null;
+$myexpiration = isset($_POST['expiration']) ? $_POST['expiration'] : null;
+$mysecuritycode = isset($_POST['securitycode']) ? $_POST['securitycode'] : null;
+
 $sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES (:name, :street, :city, :state, :zip, :creditcard, :expiration, :securitycode)";
 $stmt = $pdo->prepare($sql);
 
@@ -24,17 +35,6 @@ $stmt->bindParam(':securitycode', $mysecuritycode);
 
 $stmt->execute();
 $order_id = $pdo->lastInsertId();
-
-// Form variables
-$myname = isset($_POST['name']) ? $_POST['name'] : null;
-$mystreet = isset($_POST['street']) ? $_POST['street'] : null;
-$mycity = isset($_POST['city']) ? $_POST['city'] : null;
-$mystate = isset($_POST['state']) ? $_POST['state'] : null;
-$myzip = isset($_POST['zip']) ? $_POST['zip'] : null;
-$mycreditcard = isset($_POST['creditcard']) ? $_POST['creditcard'] : null;
-$myexpiration = isset($_POST['expiration']) ? $_POST['expiration'] : null;
-$mysecuritycode = isset($_POST['securitycode']) ? $_POST['securitycode'] : null;
-
 
 ?>
 <!DOCTYPE HTML>
@@ -60,11 +60,10 @@ $mysecuritycode = isset($_POST['securitycode']) ? $_POST['securitycode'] : null;
 
 <?php
 
-//BEGIN: If-else field check
 // If ALL of the fields have been submitted, enter the order
 if (!empty($myname) && !empty($mystreet) && !empty($mycity) && !empty($myzip) && !empty($mycreditcard) && !empty($myexpiration) && !empty($mysecuritycode)) {
-$sql = "INSERT INTO line_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)";
-$stmt = $pdo->prepare($sql);
+    $sql = "INSERT INTO line_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)";
+    $stmt = $pdo->prepare($sql);
 
 // Loop through the items in the shopping cart
 $shopping_cart_total = 0;
