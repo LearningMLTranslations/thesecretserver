@@ -94,6 +94,8 @@ if (isset($_POST["update"])) {
     } else {
         echo "Statement error";
     }
+    header('Location: /list.php?search=');
+    exit;
 }
 
 if (isset($_POST["delete"])) {
@@ -113,6 +115,8 @@ if (isset($_POST["delete"])) {
     } else {
         echo "Error: Product not deleted.";
     }
+    header('Location: /list.php?search=');
+    exit;
 }
 
 $order = "id ASC";
@@ -129,13 +133,17 @@ if (isset($_GET['order'])) {
     } else {
         echo "Invalid sort order";
     }
+    header('Location: /list.php?search=');
+    exit;
 }
+
 if (isset($_GET['search'])) {
     if (!empty($_GET['search'])) {
         $search = htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8');
         $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
     } else {
-        die("Please enter a search term.");
+        $sql = "SELECT * FROM juices ORDER BY $order";
+        echo "Please enter a search term.";
     }
 } else {
     $sql = "SELECT * FROM juices ORDER BY $order";

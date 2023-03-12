@@ -1,4 +1,5 @@
-<?php require_once "./admin/force_login.inc";
+<?php
+require_once "./admin/force_login.inc";
 include "header.php";
 session_start();
 ?>
@@ -46,5 +47,6 @@ session_start();
 
 	<br /><br /><br />
 	<p>This site is sponsored by <a href="https://www.wctc.edu">www.wctc.edu</a></p>
+
 </body>
 </html>
