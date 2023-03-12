@@ -5,7 +5,7 @@ session_start();
 ?>
 
 <body style="background-color:#f9fafc;">
-	<h1>Update Product</h1>
+	<h1 class="banner">Update Product</h1>
 
 	<form action="crud.php" method="post">
 		<div style="display:flex;">

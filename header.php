@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome to the Juice Shop!</title>
 		<style>
-		.navbar-default {
+        .banner {
             background-image: url('./images/banner.jpg');
             background-repeat: no-repeat;
             background-size: cover;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .banner h1 {
+            color: black;
+            font-size: 36px;
         }
 		.navbar {
 			background-color: #4CAF50; /* change the background color of the navbar */

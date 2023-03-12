@@ -23,15 +23,15 @@
 
 <?php include "header.php"; ?>
 
-	<h1>Product List</h1>
+	<h1 class="banner">Product List</h1>
 
 	<?php
 		$search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
 		$order = isset($_GET['order']) ? htmlspecialchars($_GET['order']) : '';
 
 		$sortByName = "?order=name&search=$search";
-		$sortByHighestPrice = "?order=price&search=$search";
-		$sortByLowestPrice = "?order=price DESC&search=$search";
+		$sortByLowestPrice = "?order=price&search=$search";
+		$sortByHighestPrice = "?order=price DESC&search=$search";
 	?>
 
 	<a href="<?= $sortByName ?>">Sort by Name</a> |
@@ -50,7 +50,7 @@
 				<th>ID</th>
 				<th>Timestamp</th>
 				<th>Price</th>
-				<th>Serving Size (Fl Oz)</th>
+				<th>Serving Size</th>
 				<th>Calories</th>
 				<th>Ingredients</th>
 				<th>Description</th>

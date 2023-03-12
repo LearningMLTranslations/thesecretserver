@@ -1,7 +1,7 @@
 <?php require_once "./admin/force_login.inc"; ?>
 <?php include "header.php"; ?>
 <?php session_start(); ?>
-	<h1>Create Product</h1>
+	<h1 class="banner">Create Product</h1>
 
 	<form action="crud.php" method="post">
 		<div style="display:flex;">

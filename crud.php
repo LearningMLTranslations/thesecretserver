@@ -157,8 +157,8 @@ if ($result->rowCount() != 0) {
         echo "<td>" . $row["id"]. "</td>";
         echo "<td>" . $row["timestamp"]. "</td>";
         echo "<td>$" . $row["price"]. "</td>";
-        echo "<td>" . $row["servingSize"]. "</td>";
-        echo "<td>" . $row["calories"]. "</td>";
+        echo "<td>" . $row["servingSize"]. " fl oz</td>";
+        echo "<td>" . $row["calories"]. " calories</td>";
         echo "<td>" . $row["ingredients"]. "</td>";
         echo "<td>" . $row["description"]. "</td>";
         echo "<td>" . $row["name"]. "</td>";
@@ -166,7 +166,7 @@ if ($result->rowCount() != 0) {
         echo "<td><form method='POST' action='./cart/'>
                 <input type='hidden' name='product_id' value='" . $row["id"] . "'>
                 <input type='hidden' name='price' value='" . $row["price"] . "'>
-                <input type='submit' value='Buy' style='padding: 5px 15px; font-size: 14px; background-color: #4CAF50; color: white; border: none; border-radius: 4px;''></form></td>";
+                <input type='submit' value='Buy' style='padding: 10px 15px; font-size: 18px; font-weight: bold; background-color: #FFA500; color: white; border: none; border-radius: 4px;''></form></td>";
         echo "</tr>";
     }
 } else {
