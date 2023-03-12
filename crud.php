@@ -138,6 +138,9 @@ if (isset($_GET['search'])) {
         $sql = "SELECT * FROM juices ORDER BY $order";
         die("Please enter a search term.");
     }
+} else {
+        $sql = "SELECT * FROM juices ORDER BY $order";
+        die("Please enter a search term.");
 }
 
 $result = $pdo->query($sql);
