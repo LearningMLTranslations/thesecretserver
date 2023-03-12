@@ -10,10 +10,10 @@ $myproduct_id = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
 $myprice = filter_input(INPUT_GET, 'price', FILTER_VALIDATE_FLOAT);
 $myquantity = filter_input(INPUT_GET, 'quantity', FILTER_VALIDATE_INT) ?? 1;
 
-if (!$myproduct_id || !$myprice || !$myquantity || $myquantity <= 0 || $myprice <= 0) {
+/*if (!$myproduct_id || !$myprice || !$myquantity || $myprice <= 0) {
     echo "Invalid input values.";
     exit;
-}
+}*/
 
 $myproduct_id = filter_var($myproduct_id, FILTER_SANITIZE_NUMBER_INT);
 $myprice = filter_var($myprice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);

@@ -135,12 +135,10 @@ if (isset($_GET['search'])) {
         $search = htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8');
         $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
     } else {
-        $sql = "SELECT * FROM juices ORDER BY $order";
         die("Please enter a search term.");
     }
 } else {
-        $sql = "SELECT * FROM juices ORDER BY $order";
-        die("Please enter a search term.");
+    $sql = "SELECT * FROM juices ORDER BY $order";
 }
 
 $result = $pdo->query($sql);
