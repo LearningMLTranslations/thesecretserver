@@ -5,10 +5,20 @@ session_start();
 // Required our database connection
 require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.php";
 
-// Form variables
-$myproduct_id = isset($_REQUEST['product_id']) ? $_REQUEST['product_id'] : null;
-$myprice = isset($_REQUEST['price']) ? $_REQUEST['price'] : null;
-$myquantity = isset($_REQUEST['quantity']) ? $_REQUEST['quantity'] : 1;
+// Form variables with validation
+$myproduct_id = filter_input(INPUT_REQUEST, 'product_id', FILTER_VALIDATE_INT);
+$myprice = filter_input(INPUT_REQUEST, 'price', FILTER_VALIDATE_FLOAT);
+$myquantity = filter_input(INPUT_REQUEST, 'quantity', FILTER_VALIDATE_INT) : 1;
+
+if (!$myproduct_id || !$myprice || !$myquantity || $myquantity <= 0 || $myprice <= 0) {
+    echo "Invalid input values.";
+    exit;
+}
+
+$myproduct_id = filter_var($myproduct_id, FILTER_SANITIZE_NUMBER_INT);
+$myprice = filter_var($myprice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+$myquantity = filter_var($myquantity, FILTER_SANITIZE_NUMBER_INT);
+
 $myremove_product_id = isset($_REQUEST['remove_product_id']) ? $_REQUEST['remove_product_id'] : null;
 
 // If the user requested an item to be removed, remove it

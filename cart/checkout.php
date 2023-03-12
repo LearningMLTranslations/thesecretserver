@@ -12,29 +12,46 @@ if(empty($_SESSION['cart'])) {
 }
 
 // Form variables
-$myname = isset($_POST['name']) ? $_POST['name'] : null;
-$mystreet = isset($_POST['street']) ? $_POST['street'] : null;
-$mycity = isset($_POST['city']) ? $_POST['city'] : null;
-$mystate = isset($_POST['state']) ? $_POST['state'] : null;
-$myzip = isset($_POST['zip']) ? $_POST['zip'] : null;
-$mycreditcard = isset($_POST['creditcard']) ? $_POST['creditcard'] : null;
-$myexpiration = isset($_POST['expiration']) ? $_POST['expiration'] : null;
-$mysecuritycode = isset($_POST['securitycode']) ? $_POST['securitycode'] : null;
+$myname = isset($_POST['name']) ? trim($_POST['name']) : '';
+$mystreet = isset($_POST['street']) ? trim($_POST['street']) : '';
+$mycity = isset($_POST['city']) ? trim($_POST['city']) : '';
+$mystate = isset($_POST['state']) ? trim($_POST['state']) : '';
+$myzip = isset($_POST['zip']) ? trim($_POST['zip']) : '';
+$mycreditcard = isset($_POST['creditcard']) ? trim($_POST['creditcard']) : '';
+$myexpiration = isset($_POST['expiration']) ? trim($_POST['expiration']) : '';
+$mysecuritycode = isset($_POST['securitycode']) ? trim($_POST['securitycode']) : '';
 
-$sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES (:name, :street, :city, :state, :zip, :creditcard, :expiration, :securitycode)";
-$stmt = $pdo->prepare($sql);
+// Set the flag variable to false
+$any_field_empty = false;
 
-$stmt->bindParam(':name', $myname);
-$stmt->bindParam(':street', $mystreet);
-$stmt->bindParam(':city', $mycity);
-$stmt->bindParam(':state', $mystate);
-$stmt->bindParam(':zip', $myzip);
-$stmt->bindParam(':creditcard', $mycreditcard);
-$stmt->bindParam(':expiration', $myexpiration);
-$stmt->bindParam(':securitycode', $mysecuritycode);
+// Check that all form fields have been submitted
+foreach (array('name', 'street', 'city', 'state', 'zip', 'creditcard', 'expiration', 'securitycode') as $field) {
+    if (empty($_POST[$field])) {
+        $any_field_empty = true;
+        break;
+    }
+}
 
-$stmt->execute();
-$order_id = $pdo->lastInsertId();
+// If one or more of the fields are empty, display an error message
+if ($any_field_empty) {
+    echo "<p class='error'>ERROR: Please complete all fields.</p>";
+
+} else {
+    $sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES (:name, :street, :city, :state, :zip, :creditcard, :expiration, :securitycode)";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(':name', $myname);
+    $stmt->bindParam(':street', $mystreet);
+    $stmt->bindParam(':city', $mycity);
+    $stmt->bindParam(':state', $mystate);
+    $stmt->bindParam(':zip', $myzip);
+    $stmt->bindParam(':creditcard', $mycreditcard);
+    $stmt->bindParam(':expiration', $myexpiration);
+    $stmt->bindParam(':securitycode', $mysecuritycode);
+
+    $stmt->execute();
+    $order_id = $pdo->lastInsertId();
+}
 
 ?>
 <!DOCTYPE HTML>

@@ -7,23 +7,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $myusername = $_REQUEST['username'];
     $mypassword = $_REQUEST['password'];
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username=:user AND password=SHA2(:pass, 256)");
-    $stmt->bindParam(':user', $myusername, PDO::PARAM_STR);
-    $stmt->bindParam(':pass', $mypassword, PDO::PARAM_STR);
-    $stmt->execute();
-    $row = $stmt->fetch();
-
-    // This is what happens when a user successfully authenticates
-    if ($row !== false) {
-        // Delete any data in the current session to start new
-        session_destroy();
-        session_start();
-
-        $_SESSION['username'] = $row['username'];
-
-        // This is what happens when the username and/or password doesn't match
+ // Validate empty fields
+    if (empty($myusername) || empty($mypassword)) {
+        echo "<p>Please enter both username and password.</p>";
     } else {
-        echo "<p>Incorrect username OR password</p>";
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE username=:user AND password=SHA2(:pass, 256)");
+        $stmt->bindParam(':user', $myusername, PDO::PARAM_STR);
+        $stmt->bindParam(':pass', $mypassword, PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+
+
+        // This is what happens when a user successfully authenticates
+        if ($row !== false) {
+            // Delete any data in the current session to start new
+            session_destroy();
+            session_start();
+
+            $_SESSION['username'] = $row['username'];
+
+            // This is what happens when the username and/or password doesn't match
+        } else {
+            echo "<p>Incorrect username OR password</p>";
+        }
     }
 }
 
