@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome to the Juice Shop!</title>
 		<style>
+		.navbar-default {
+            background-image: url('./images/banner.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+		.navbar {
+			background-color: #4CAF50; /* change the background color of the navbar */
+			font-family: Arial, sans-serif;
+		}
+
+		.navbar a {
+			color: blue;
+			font-size: 18px;
+			padding: 15px;
+		}
+
+		.navbar a:hover {
+			background-color: #3e8e41; /* add a hover effect to the navbar links */
+			color: white; /* change the color of the navbar links when hovered */
+		}
 		form {
 			width: 400px;
 			margin: 0 auto;
@@ -43,26 +63,25 @@
 		}
 	</style>
 </head>
-<header class="">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header"></div>
-        <ul class="nav navbar-nav">
-            <a href="/index.php">Home</a>
-    <?php
-    echo '| <a href="/list.php?search=">Products</a>';
-    ?>
-    <?php
-    if(isset($_SESSION['username']) && $_SESSION['username'] != NULL) {
-    echo ' | <a href="/admin/logout.php">Logout</a>';
-    echo ' | <a href="/create.php">Create</a>';
-    echo ' | <a href="/update.php">Update</a>';
-    echo ' | <a href="/delete.php">Delete</a>';
-    } else {
-    echo ' | <a href="/admin/login.php">Login</a> ';
-        }
-    ?>
-    </ul>
-  </nav>
 
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header"></div>
+		<ul class="nav navbar-nav">
+			<a href="/index.php">Home</a>
+			<?php
+			    echo '| <a href="/list.php?search=">Products</a>';
+			if(isset($_SESSION['username']) && $_SESSION['username'] != NULL) {
+				echo ' | <a href="/admin/logout.php">Logout</a>';
+				echo ' | <a href="/create.php">Create</a>';
+				echo ' | <a href="/update.php">Update</a>';
+				echo ' | <a href="/delete.php">Delete</a>';
+			} else {
+				echo ' | <a href="/admin/login.php">Login</a> ';
+			}
+			?>
+		</ul>
+	</nav>
 </header>
+
 <body style="background-color:#f9fafc;">
