@@ -5,6 +5,7 @@
 
 	<div class="image-container">
 		<img alt="My Logo" src="/images/my_logo.jpg" width="400" />
+		<p>We have delicious juice for everyone!</p>
 		<img alt="Juice" src="/images/drinking.jpg" width="600" />
 		<img alt="My Logo" src="/images/my_logo.jpg" width="400" />
 	</div>
@@ -18,6 +19,6 @@
 	.image-container {
 		display: flex;
 		justify-content: space-between;
-		margin-top: 50px;
+		margin-top: 15px;
 	}
 </style>

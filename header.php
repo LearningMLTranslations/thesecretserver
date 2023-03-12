@@ -11,12 +11,13 @@
             background-size: cover;
             background-position: center bottom;
             text-align: center;
-            height: 200px;
-            padding: 50px 0;
+            height: 120px;
+            padding: 15px 0;
         }
         .banner h1 {
             color: black;
             font-size: 36px;
+            text-shadow: 2px 2px 2px white, -2px -2px 2px white, 2px -2px 2px white, -2px 2px 2px white;
         }
 		.navbar {
 			background-color: #4CAF50;
