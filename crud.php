@@ -77,7 +77,7 @@ if (isset($_POST["update"])) {
         || $ingredients === false || $description === false || $name === false || $image === false) {
         die("Invalid input. Please check your input and try again.");
     }
-
+}
     // Update the product in the database
 if ($stmt = $pdo->prepare("UPDATE juices SET price=:price, servingSize=:servingSize, calories=:calories, ingredients=:ingredients, description=:description, name=:name, image=:image WHERE id=:id")) {
     $stmt->bindParam(':price', $price);
