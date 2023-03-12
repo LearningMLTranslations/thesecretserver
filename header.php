@@ -9,7 +9,9 @@
             background-image: url('./images/banner.jpg');
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center bottom;
             text-align: center;
+            height: 200px;
             padding: 50px 0;
         }
         .banner h1 {
@@ -17,7 +19,7 @@
             font-size: 36px;
         }
 		.navbar {
-			background-color: #4CAF50; /* change the background color of the navbar */
+			background-color: #4CAF50;
 			font-family: Arial, sans-serif;
 		}
 
@@ -28,8 +30,8 @@
 		}
 
 		.navbar a:hover {
-			background-color: #3e8e41; /* add a hover effect to the navbar links */
-			color: white; /* change the color of the navbar links when hovered */
+			background-color: #3e8e41;
+			color: white;
 		}
 		form {
 			width: 400px;
