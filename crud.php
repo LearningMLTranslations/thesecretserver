@@ -59,6 +59,8 @@ if (isset($_POST["create"])) {
     } else {
         echo "Error: " . $stmt->errorInfo();
     }
+    header('Location: /list.php?search=');
+    exit;
 }
 
 if (isset($_POST["update"])) {
@@ -133,8 +135,6 @@ if (isset($_GET['order'])) {
     } else {
         echo "Invalid sort order";
     }
-    header('Location: /list.php?search=');
-    exit;
 }
 
 if (isset($_GET['search'])) {

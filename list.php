@@ -50,7 +50,7 @@
 				<th>ID</th>
 				<th>Timestamp</th>
 				<th>Price</th>
-				<th>Serving Size</th>
+				<th>Serving Size (Fl Oz)</th>
 				<th>Calories</th>
 				<th>Ingredients</th>
 				<th>Description</th>
