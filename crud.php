@@ -73,28 +73,28 @@ if (isset($_POST["update"])) {
     $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
     $image = filter_var($_POST["image"], FILTER_SANITIZE_STRING);
 
-    if ($id === false || $price === false || $servingSize === false || $calories === false
-        || $ingredients === false || $description === false || $name === false || $image === false) {
+    if ($id === false || $price === false || $servingSize === false || $calories === false || $ingredients === false || $description === false || $name === false || $image === false) {
         die("Invalid input. Please check your input and try again.");
     }
-}
+
     // Update the product in the database
-if ($stmt = $pdo->prepare("UPDATE juices SET price=:price, servingSize=:servingSize, calories=:calories, ingredients=:ingredients, description=:description, name=:name, image=:image WHERE id=:id")) {
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':servingSize', $servingSize);
-    $stmt->bindParam(':calories', $calories);
-    $stmt->bindParam(':ingredients', $ingredients);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':image', $image);
-    $stmt->bindParam(':id', $id);
-    if ($stmt->execute()) {
-        echo "Product updated successfully!";
+    if ($stmt = $pdo->prepare("UPDATE juices SET price=:price, servingSize=:servingSize, calories=:calories, ingredients=:ingredients, description=:description, name=:name, image=:image WHERE id=:id")) {
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':servingSize', $servingSize);
+        $stmt->bindParam(':calories', $calories);
+        $stmt->bindParam(':ingredients', $ingredients);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':id', $id);
+        if ($stmt->execute()) {
+            echo "Product updated successfully!";
+        } else {
+            echo "Error updating product";
+        }
     } else {
-        echo "Error updating product";
+        echo "Statement error";
     }
-} else {
-    echo "Statement error";
 }
 
 if (isset($_POST["delete"])) {
