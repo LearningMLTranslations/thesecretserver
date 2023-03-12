@@ -46,8 +46,7 @@ if (isset($_POST["create"])) {
     }
 
     // Insert the product into the database
-    $stmt = $pdo->prepare("INSERT INTO juices (timestamp, price, servingSize, calories, ingredients, description, name, image)
-            VALUES (NOW(), :price, :servingSize, :calories, :ingredients, :description, :name, :image)");
+    $stmt = $pdo->prepare("INSERT INTO juices (timestamp, price, servingSize, calories, ingredients, description, name, image) VALUES (NOW(), :price, :servingSize, :calories, :ingredients, :description, :name, :image)");
     $stmt->bindParam(':price', $price);
     $stmt->bindParam(':servingSize', $servingSize);
     $stmt->bindParam(':calories', $calories);
@@ -136,10 +135,9 @@ if (isset($_GET['search'])) {
         $search = htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8');
         $sql = "SELECT * FROM juices WHERE name LIKE '%$search%' ORDER BY $order";
     } else {
-        die("Please enter a search term");
-        }
-} else {
-    $sql = empty($search) ? "SELECT * FROM juices ORDER BY $order";
+        "SELECT * FROM juices ORDER BY $order";
+        die("Please enter a search term.");
+    }
 }
 
 $result = $pdo->query($sql);

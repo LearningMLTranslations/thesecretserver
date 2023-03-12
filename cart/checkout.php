@@ -34,7 +34,7 @@ foreach (array('name', 'street', 'city', 'state', 'zip', 'creditcard', 'expirati
 
 // If one or more of the fields are empty, display an error message
 if ($any_field_empty) {
-    echo "<p class='error'>ERROR: Please complete all fields.</p>";
+    echo "<p class='error'>Please complete all fields.</p>";
 
 } else {
     $sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES (:name, :street, :city, :state, :zip, :creditcard, :expiration, :securitycode)";
