@@ -1,6 +1,6 @@
 <?php
-require_once "./admin/force_login.inc";
-include "header.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/admin/force_login.inc";
+include $_SERVER['DOCUMENT_ROOT']."header.php";
 
 // Start the user's session
 session_start();
