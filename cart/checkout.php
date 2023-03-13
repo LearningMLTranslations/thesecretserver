@@ -226,10 +226,6 @@ foreach($states as $key => $value)
 	</table>
 </form>
 
-<?php
-}
-?>
-
 </body>
 </html>
 
