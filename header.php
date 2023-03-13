@@ -1,7 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
-<?php session_start(); ?>
+<?php
+// Start the user's session
+session_start();
+// Generate a CSRF token and store it in the user's session
+$_SESSION['csrf_token'] = bin2hex(random_bytes(64));
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -101,3 +106,4 @@
 </header>
 
 <body style="background-color:#f9fafc; text-align: center;">
+

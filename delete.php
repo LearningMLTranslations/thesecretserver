@@ -8,6 +8,7 @@ include 'header.php';
             <label for="id">Product ID:</label>
             <input type="number" id="id" name="id" required>
             <br /> <br />
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <button type="submit" name="delete" style="background-color: red; font-weight: bold;">Delete Product</button>
 	</form>
 <br /><br /><br />
