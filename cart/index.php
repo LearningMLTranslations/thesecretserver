@@ -50,17 +50,11 @@ while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 
-<style>
-    table {
-        background-color: #eaf6ff;
-    }
-</style>
-<!--
 <head>
-	<title>Juice Shop - Shopping Cart</title>
 	<style>
 		table {
 			border-collapse: collapse;
+            background-color: #eaf6ff;
 			width: 50rem;
 		}
 		td, th {
@@ -78,7 +72,7 @@ while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 		}
 	</style>
 </head>
--->
+
 <h1 class="banner">Shopping Cart</h1>
 
 <?php

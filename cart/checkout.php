@@ -11,6 +11,7 @@ if(empty($_SESSION['cart'])) {
 	exit();
 }
 
+
 // Form variables
 $myname = isset($_POST['name']) ? trim($_POST['name']) : '';
 $mystreet = isset($_POST['street']) ? trim($_POST['street']) : '';
@@ -65,6 +66,11 @@ if ($any_field_empty) {
 			color: red;
 			padding: .5rem;
 			width: 50rem;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 		}
 		th {
 			text-align: right;
@@ -117,7 +123,7 @@ foreach($_SESSION['cart'] as $item_product_id => $item) {
 ?>
 
 <p>Please enter your billing details.</p>
-<form action="checkout_process.php" method="post">
+<form action="checkout.php" method="post">
 	<table>
 		<tr>
 			<th><label for="name">Name</label></th>
