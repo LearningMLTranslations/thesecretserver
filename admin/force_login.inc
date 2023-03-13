@@ -1,5 +1,6 @@
 <?php
-if(!isset($_SESSION) || !isset($_SESSION['username'])) {
+
+if(!$_SESSION['username']) {
 	header("Location: /admin/login.php");
 	exit();
 }
