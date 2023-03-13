@@ -19,7 +19,6 @@
 		}
 	</style>
 </head>
-<body style="background-color:#f9fafc;">
 
 <?php include "header.php"; ?>
 

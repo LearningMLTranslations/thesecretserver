@@ -17,7 +17,7 @@
         .banner h1 {
             color: black;
             font-size: 36px;
-            text-shadow: 2px 2px 4px #000000;
+            text-shadow: 2px 2px 4px #FFFFFF;
             position: relative;
             z-index: 1;
         }
