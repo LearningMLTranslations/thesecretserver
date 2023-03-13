@@ -2,6 +2,7 @@
 $username = 'root';
 $password = 'L0g1n_P4s$w0rd';
 
+// Try / Catch block to create connection to database and fail on error states
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=juiceshop', $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -19,6 +20,7 @@ if (isset($_POST["create"])) {
     $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
     $image = filter_var($_POST["image"], FILTER_SANITIZE_STRING);
 
+    // Create array for various errors if the user fails to enter correct information type
     $errors = [];
     if ($price === false) {
         $errors[] = "Invalid price. Please enter a valid number.";
@@ -38,7 +40,7 @@ if (isset($_POST["create"])) {
     if (empty($image)) {
         $errors[] = "Image URL cannot be empty. Please enter a URL for the product image.";
     }
-
+    // Tell the user what the error was
     if (!empty($errors)) {
         die("Invalid input:<br>" . implode("<br>", $errors));
     }
@@ -76,7 +78,7 @@ if (isset($_POST["update"])) {
         die("Invalid input. Please check your input and try again.");
     }
 
-    // Update the product in the database
+    // Create prepared statement from user inputs and update the product in the database
     if ($stmt = $pdo->prepare("UPDATE juices SET price=:price, servingSize=:servingSize, calories=:calories, ingredients=:ingredients, description=:description, name=:name, image=:image WHERE id=:id")) {
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':servingSize', $servingSize);
@@ -94,18 +96,19 @@ if (isset($_POST["update"])) {
     } else {
         echo "Statement error";
     }
-    header('Location: /list.php?search=');
+    header('Location: /list.php?search='); // Return to product list on completion
     exit;
 }
-
+// Delete action block
 if (isset($_POST["delete"])) {
-    $id = filter_var($_POST["id"], FILTER_VALIDATE_INT);
+    $id = filter_var($_POST["id"], FILTER_VALIDATE_INT); // Validate input
     if ($id === false) {
         die("Invalid input. Please check your input and try again.");
     }
 
     // Delete the product from the database
     $sql = "DELETE FROM juices WHERE id=:id";
+    // Prepare delete query
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
@@ -115,7 +118,7 @@ if (isset($_POST["delete"])) {
     } else {
         echo "Error: Product not deleted.";
     }
-    header('Location: /list.php?search=');
+    header('Location: /list.php?search='); // Return to product list on completion
     exit;
 }
 
