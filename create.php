@@ -3,7 +3,7 @@ require_once "./admin/force_login.inc";
 include "header.php";
 ?>
 
-	<h1 class="banner">Create Product</h1>
+	<h1 class="banner">Create Product</h1> <!-- Adds styling -->
 
 	<form action="crud.php" method="post">
 		<div style="display:flex;">
