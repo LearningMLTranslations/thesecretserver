@@ -5,7 +5,9 @@
 
 	<div class="image-container">
 		<img alt="My Logo" src="/images/my_logo.jpg" width="400" />
-		<p>We have delicious juice for everyone!</p>
+        <div class="text-overlay">
+            <p>We have delicious juice for everyone!</p>
+        </div>
 		<img alt="Juice" src="/images/drinking.jpg" width="600" />
 		<img alt="My Logo" src="/images/my_logo.jpg" width="400" />
 	</div>
@@ -20,5 +22,20 @@
 		display: flex;
 		justify-content: space-between;
 		margin-top: 15px;
+        position: relative;
 	}
+	.text-overlay p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+   }
+    .text-overlay p {
+        font-size: 36px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+    }
 </style>
