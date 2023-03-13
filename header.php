@@ -97,6 +97,7 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(64));
 				echo ' | <a href="/create.php">Create</a>';
 				echo ' | <a href="/update.php">Update</a>';
 				echo ' | <a href="/delete.php">Delete</a>';
+				echo ' | <a href="/cart/index.php">Cart</a>';
 			} else {
 				echo ' | <a href="/admin/login.php">Login</a> ';
 			}

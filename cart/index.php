@@ -52,6 +52,12 @@ while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 <!DOCTYPE HTML>
 <html lang=en>
 
+<style>
+    table {
+        background-color: #eaf6ff;
+    }
+</style>
+
 <head>
 	<title>Juice Shop - Shopping Cart</title>
 	<style>
@@ -76,7 +82,7 @@ while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 </head>
 
 <body>
-<h1>Shopping Cart</h1>
+<h1 class="banner">Shopping Cart</h1>
 
 <?php
 // BEGIN: If-else shopping cart check
@@ -89,11 +95,12 @@ if(empty($_SESSION['cart'])) {
 ?>
 
 <p>You've picked out some great products! Ready to check out?</p>
-<table>
-	<thead>
-		<tr><th>Product</th><th class="price">Quantity @ Price</th><th class="price">Subtotal</th></tr>
-	</thead>
-	<tbody>
+<div style="margin: 0 auto; width: 50%;">
+	<table>
+		<thead>
+			<tr><th>Product</th><th class="price">Quantity / Price per item</th><th class="price">Subtotal</th></tr>
+		</thead>
+		<tbody>
 
 <?php
 
