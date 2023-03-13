@@ -55,6 +55,7 @@ include "header.php";
 				<th>Description</th>
 				<th>Name</th>
 				<th>Image</th>
+				<th>Quantity</th>
 			</tr>
 		</thead>
 		<tbody>

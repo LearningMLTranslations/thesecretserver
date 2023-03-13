@@ -49,15 +49,13 @@ while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 }
 
 ?>
-<!DOCTYPE HTML>
-<html lang=en>
 
 <style>
     table {
         background-color: #eaf6ff;
     }
 </style>
-
+<!--
 <head>
 	<title>Juice Shop - Shopping Cart</title>
 	<style>
@@ -80,8 +78,7 @@ while($row = $results->fetch(PDO::FETCH_ASSOC)) {
 		}
 	</style>
 </head>
-
-<body>
+-->
 <h1 class="banner">Shopping Cart</h1>
 
 <?php

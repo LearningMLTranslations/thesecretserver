@@ -167,7 +167,7 @@ if ($result->rowCount() != 0) {
         echo "<td><form method='GET' action='./cart/index.php'>
             <input type='hidden' name='product_id' value='" . $row["id"] . "'>
             <input type='hidden' name='price' value='" . $row["price"] . "'>
-            <input type='number' name='quantity' value='1' min='1'>
+            <input type='number' name='quantity' value='1' min='1' max='99' style='width: 50px;'>
             <input type='submit' value='Add to Cart' style='padding: 10px 15px; font-size: 18px; font-weight: bold; background-color: #FFA500; color: white; border: none; border-radius: 4px;''></form></td>";
         echo "</tr>";
     }
