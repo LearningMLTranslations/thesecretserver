@@ -1,4 +1,7 @@
 <?php
+require_once "./admin/force_login.inc";
+include "header.php";
+
 // Start the user's session
 session_start();
 

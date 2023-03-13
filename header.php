@@ -15,10 +15,12 @@
             padding: 15px 0;
         }
         .banner h1 {
+            margin: 0;
             color: black;
             font-size: 36px;
+            font-weight: bold;
             text-shadow: 2px 2px 4px #FFFFFF;
-            position: relative;
+            text-align: center;
             z-index: 1;
         }
 		.navbar {
