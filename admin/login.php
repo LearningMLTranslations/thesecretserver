@@ -1,5 +1,6 @@
 <?php
 require_once "db.php";
+include '../header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $myusername = $_REQUEST['username'];
@@ -14,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':pass', $mypassword, PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
-
 
         // This is what happens when a user successfully authenticates
         if ($row !== false) {
@@ -39,7 +39,6 @@ if(isset($_SESSION['username'])) {
     ?>
     <html>
     <body>
-    <?php include '../header.php'; ?>
     <form method="post" action="/admin/login.php">
         <input type="hidden" name="redirect" value="<?php echo isset($_REQUEST['redirect']); ?>" />
 
