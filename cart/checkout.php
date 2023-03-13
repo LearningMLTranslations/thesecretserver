@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // If one or more of the fields are empty, display an error message
     if ($any_field_empty) {
-        #echo "<p class='error'>Please complete all fields.</p>";
+        echo "<p class='error'>Please complete all fields.</p>";
         exit();
     } else {
         $sql = "INSERT INTO orders (name, street, city, state, zip, creditcard, expiration, securitycode) VALUES (:name, :street, :city, :state, :zip, :creditcard, :expiration, :securitycode)";
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     if (isset($_POST['name']) || isset($_POST['street']) || isset($_POST['city']) || isset($_POST['state']) || isset($_POST['zip']) || isset($_POST['creditcard']) || isset($_POST['expiration']) || isset($_POST['securitycode'])) {
         // If the form has been submitted but there are still missing fields, display an error message
-        #echo "<p class='error'>ERROR: Please complete all fields.</p>";
+        echo "<p class='error'>ERROR: Please complete all fields.</p>";
     }
 }
 
@@ -76,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			width: 50rem;
             text-align: center;
             position: absolute;
-            left: 50%;
 		}
 		th {
 			text-align: right;
@@ -117,15 +116,7 @@ foreach($_SESSION['cart'] as $item_product_id => $item) {
 	<p><em>Just when you've forgotten about it, or decide you want a refund, it'll show up for sure! (Or just wait another day or two...)</em></p>
 
 <?php
-
-// Else not ALL of the fields have been submitted, so show the form
-} else {
-
-	// If one or more of the fields have been submitted, display an error message
-	if (isset($myname) || isset($mystreet) || isset($mycity) || isset($myzip) || isset($mycreditcard) || isset($myexpiration) || isset($mysecuritycode)) {
-		echo "<p class='error'>ERROR: Please complete all fields.</p>";
-
-	}
+}
 ?>
 
 <p>Please enter your billing details.</p>

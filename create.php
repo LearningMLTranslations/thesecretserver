@@ -34,6 +34,7 @@ include "header.php";
 			<label for="image" style="width:100px;">Image:</label>
 			<input type="text" id="image" name="image" required>
 		</div>
+		<input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 		<br>
 		<button type="submit" name="create" style="font-weight:bold;">Create Product</button>
 	</form>
