@@ -1,7 +1,9 @@
-<?php require_once "./admin/force_login.inc"; ?>
-<?php session_start(); ?>
-<body style="background-color:#f9fafc;">
-<?php include 'header.php'; ?>
+<?php
+require_once "./admin/force_login.inc";
+session_start();
+include 'header.php';
+?>
+
 	<h1 class="banner">Delete Product</h1>
 	<form method="POST" action="crud.php">
             <label for="id">Product ID:</label>
