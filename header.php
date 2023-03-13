@@ -17,7 +17,7 @@
         .banner h1 {
             color: black;
             font-size: 36px;
-            text-shadow: 2px 2px 4px white, -2px -2px 4px white, 2px -2px 2px white, -2px 2px 4px white;
+            text-shadow: 2px 2px 4px #000000;
             position: relative;
             z-index: 1;
         }
@@ -95,4 +95,4 @@
 	</nav>
 </header>
 
-<body style="background-color:#f9fafc;">
+<body style="background-color:#f9fafc; text-align: center;">

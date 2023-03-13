@@ -24,18 +24,20 @@
 		margin-top: 15px;
         position: relative;
 	}
-	.text-overlay p {
+    .text-overlay {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
+        height: 100%;
         background-color: rgba(255, 255, 255, 0.8);
-        padding: 10px;
-   }
+    }
     .text-overlay p {
+        margin: 0;
         font-size: 36px;
         font-weight: bold;
         color: white;
         text-shadow: 2px 2px 4px #000000;
+        text-align: center;
     }
 </style>
