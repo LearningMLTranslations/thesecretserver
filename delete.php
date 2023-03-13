@@ -1,6 +1,5 @@
 <?php
 require_once "./admin/force_login.inc";
-session_start();
 include 'header.php';
 ?>
 

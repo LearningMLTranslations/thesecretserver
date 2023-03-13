@@ -1,5 +1,7 @@
-<?php require_once "./admin/force_login.inc"; ?>
-<?php session_start(); ?>
+<?php
+include "header.php";
+?>
+
 <head>
 	<style>
 		table {
@@ -19,8 +21,6 @@
 		}
 	</style>
 </head>
-
-<?php include "header.php"; ?>
 
 	<h1 class="banner">Product List</h1>
 

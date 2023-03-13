@@ -1,6 +1,6 @@
 <?php
-// Start the user's session
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT']."/admin/force_login.inc";
+include "../header.php";
 
 // Required our database connection
 require_once $_SERVER['DOCUMENT_ROOT']."/admin/db.php";

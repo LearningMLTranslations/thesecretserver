@@ -1,7 +1,6 @@
 <?php
 require_once "./admin/force_login.inc";
 include "header.php";
-session_start();
 ?>
 
 	<h1 class="banner">Create Product</h1>

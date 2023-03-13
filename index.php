@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php include 'header.php'; ?>
 
 	<h1 class="banner">Welcome to the Juice Shop!</h1>

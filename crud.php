@@ -9,8 +9,6 @@ try {
     echo 'Connection failed: ' . $e->getMessage();
 }
 
-session_start();
-
 if (isset($_POST["create"])) {
     // Validate user input
     $price = filter_var($_POST["price"], FILTER_VALIDATE_FLOAT);
