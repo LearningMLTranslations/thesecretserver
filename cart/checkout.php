@@ -68,9 +68,7 @@ if ($any_field_empty) {
 			width: 50rem;
             text-align: center;
             position: absolute;
-            top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
 		}
 		th {
 			text-align: right;
