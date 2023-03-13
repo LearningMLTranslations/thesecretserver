@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			width: 50rem;
             text-align: center;
             position: absolute;
+            left: 50%;
 		}
 		th {
 			text-align: right;
@@ -116,7 +117,15 @@ foreach($_SESSION['cart'] as $item_product_id => $item) {
 	<p><em>Just when you've forgotten about it, or decide you want a refund, it'll show up for sure! (Or just wait another day or two...)</em></p>
 
 <?php
-}
+
+// Else not ALL of the fields have been submitted, so show the form
+} else {
+
+	// If one or more of the fields have been submitted, display an error message
+	if (isset($myname) || isset($mystreet) || isset($mycity) || isset($myzip) || isset($mycreditcard) || isset($myexpiration) || isset($mysecuritycode)) {
+		echo "<p class='error'>ERROR: Please complete all fields.</p>";
+
+	}
 ?>
 
 <p>Please enter your billing details.</p>
@@ -225,6 +234,10 @@ foreach($states as $key => $value)
 		</tr>
 	</table>
 </form>
+
+<?php
+}
+?>
 
 </body>
 </html>
