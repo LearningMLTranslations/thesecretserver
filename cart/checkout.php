@@ -121,11 +121,6 @@ foreach($_SESSION['cart'] as $item_product_id => $item) {
 // Else not ALL of the fields have been submitted, so show the form
 } else {
 
-	// If one or more of the fields have been submitted, display an error message
-	if (isset($myname) || isset($mystreet) || isset($mycity) || isset($myzip) || isset($mycreditcard) || isset($myexpiration) || isset($mysecuritycode)) {
-		echo "<p class='error'>ERROR: Please complete all fields.</p>";
-
-	}
 ?>
 
 <p>Please enter your billing details.</p>
